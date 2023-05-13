@@ -22,34 +22,38 @@ namespace health_calc_pack_dotnet_test.PackLibrary
         }
 
         [Fact]
-        public void ValidaDadosIMC_QuandoDadosValidos_EntaoRetornaVerdadeiro()
+        public void ValidaDadosIMC_QuandoDadosInvalidos_EntaoRetornaFalso()
         {
             //Arrange
             IIMC imc = new IMC();
             double Height = 10.0;
             double Weight = 400.0;
-            bool Expected = false;
 
             //Act
             var result = imc.IsValidData(Height, Weight);
 
             //Asserts
-            Assert.Equal(Expected, result);
+            Assert.False(result);
         }
 
-        [Fact]
-        public void RetornaCategoriaIMC_QuandoIndiceValido_EntaoRetornaDescricao()
+        [Theory]
+        [InlineData(17, IMCConstant.MAGREZA)]
+        [InlineData(24, IMCConstant.NORMAL)]
+        [InlineData(26, IMCConstant.SOBREPESO)]
+        [InlineData(30.55, IMCConstant.OBESIDADE)]
+        [InlineData(42, IMCConstant.OBESIDADE_GRAVE)]
+        public void RetornaCategoriaIMC_QuandoIndiceValido_EntaoRetornaDescricao(double ValorIMC, string Resultado)
         {
             //Arrange
             IIMC imc = new IMC();
-            double ValorIMC = 24.06;
-            string Expected = "NORMAL";
+            
+            
 
             //Act
             var result = imc.GetIMCCategory(ValorIMC);
 
             //Asserts
-            Assert.Equal(Expected, result);
+            Assert.Equal(Resultado, result);
         }
 
     }

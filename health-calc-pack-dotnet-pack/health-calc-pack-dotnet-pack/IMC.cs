@@ -18,19 +18,16 @@ namespace health_calc_pack_dotnet_pack
         //MAIOR QUE 40,0	    OBESIDADE GRAVE     III
         public string GetIMCCategory(double IMC)
         {
-            var Result = string.Empty;
             if (IMC < 18.5)
-                Result = "MAGREZA";
-            else if (IMC >= 18.5 && IMC < 25)
-                Result = "NORMAL";
-            else if (IMC >= 25 && IMC < 30)
-                Result = "SOBREPESO";
-            else if (IMC >= 30 && IMC < 40)
-                Result = "OBESIDADE";
-            else if (IMC >= 40)
-                Result = "OBESIDADE GRAVE";
+                return IMCConstant.MAGREZA;
+            if (IMC < 25)
+                return IMCConstant.NORMAL;
+            if (IMC < 30)
+                return IMCConstant.SOBREPESO;
+            if (IMC < 40)
+                return IMCConstant.OBESIDADE;
 
-            return Result;
+            return IMCConstant.OBESIDADE_GRAVE;
         }
 
         public bool IsValidData(double Height, double Weight)
