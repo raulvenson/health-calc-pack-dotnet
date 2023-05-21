@@ -9,6 +9,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="health-calc-pack-dotnet-pack" Version="1.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\health-calc-pack-dotnet-pack\health-calc-pack-dotnet-pack.csproj" />
   </ItemGroup>
 
